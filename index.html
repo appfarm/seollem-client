@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
+<title>Seollem</title>
+<!-- 1.0.1 -->
+<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script> -->
+
+<!-- 1.1.0-rc.1 -->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js"></script>
+<style>
+#main {
+  background-image: url(images/bg_main@2x.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+#main_nav {
+  text-align: center;
+}
+
+#main_nav a {
+  float: none !important;
+/*  border-radius: 0;*/
+}
+
+.menu_btn {
+  border: 0;
+
+  box-shadow: none;
+  border: none;
+  text-align: justify;
+  text-indent: -9999px;
+}
+
+.sprite.btn_today {
+  background: url(images/red@2x.png);
+  background-size: 100%;
+  height: 58px;
+  width: 58px;
+}
+
+.sprite.btn_note {
+  background: url(images/olive@2x.png);
+  background-size: 100%;
+  height: 58px;
+  width: 58px;
+}
+
+.sprite.btn_shop {
+  background: url(images/yellow@2x.png);
+  background-size: 100%;
+  height: 58px;
+  width: 58px;
+}
+
+.sprite.btn_profile {
+  background: url(images/blue@2x.png);
+  background-size: 100%;
+  height: 58px;
+  width: 58px;
+}
+</style>
+</head>
+
+<body>
+<!-- Start of first page: #one -->
+<div data-role="page" id="main">
+
+  <div data-role="content" >
+    <div style="height: 250px;"></div>
+    <div id="main_nav">
+      <div class="ui-grid-d">
+        <a href="#today" class="sprite menu_btn btn_today ui-block-a" data-role="button" data-inline="true" data-transition="slide">today</a>
+        <a href="#note" class="sprite menu_btn btn_note ui-block-b" data-role="button" data-inline="true" data-transition="slide">note</a>
+        <a href="#shop" class="ui-block-c sprite menu_btn btn_shop" data-role="button" data-inline="true" data-transition="slide">shop</a>
+        <a href="#profile" class="ui-block-d sprite menu_btn btn_profile" data-role="button" data-inline="true" data-transition="slide">profile</a>
+      </div>
+    </div>
+
+    <p><a href="#popup"data-role="button" data-rel="dialog" data-transition="pop">Show page "popup" (as a dialog)</a></p>
+  </div><!-- /content -->
+
+</div><!-- /page one -->
+
+
+<!-- Start of second page: #two -->
+<div data-role="page" id="profile">
+
+  <div data-role="header">
+    <a href="#" data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="notext">back</a>
+    <h1>profile</h1>
+  </div><!-- /header -->
+
+  <div data-role="content" id="profile_content">
+    <script>
+    $.getJSON('http://localhost:8080/json/profile/0001', function(data) {
+      var items = [];
+
+      $.each(data, function(key, val) {
+        items.push('<li id="' + key + '">' + val + '</li>');
+      });
+
+      $('<ul/>', {
+        'class': 'my-new-list',
+        html: items.join('')
+      }).appendTo('#profile_content');
+    });
+    </script>
+
+  </div><!-- /content -->
+
+</div><!-- /page two -->
+
+
+<!-- Start of third page: #popup -->
+<div data-role="page" id="popup">
+
+  <div data-role="header" data-theme="e">
+    <h1>Dialog</h1>
+  </div><!-- /header -->
+
+  <div data-role="content" data-theme="d">  
+    <h2>Popup</h2>
+    <p><a href="#one" data-rel="back" data-role="button" data-inline="true" data-icon="back">Back to page "one"</a></p> 
+  </div><!-- /content -->
+
+  <div data-role="footer">
+    <h4>Page Footer</h4>
+  </div><!-- /footer -->
+</div><!-- /page popup -->
+</body>
+
+</html>
