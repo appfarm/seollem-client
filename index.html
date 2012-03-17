@@ -102,7 +102,7 @@
     $.getJSON('http://localhost:8080/json/profile/0001', function(data) {
       var items = [];
 
-      $.each(data, function(key, val) {
+      $.each(data.profile, function(key, val) {
         items.push('<li id="' + key + '">' + val + '</li>');
       });
 
